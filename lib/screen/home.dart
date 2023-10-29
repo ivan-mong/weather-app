@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/bloc/weather/weather_bloc.dart';
 import 'package:weather_app/core/service.dart';
+import 'package:weather_app/screen/slider.dart';
 import 'package:weather_app/theme/theme.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -44,6 +45,11 @@ class HomeScreen extends StatelessWidget {
                     }
                     if (state is ApiFailure) {
                       return const Text("request failed");
+                    }
+                    if (state is GetWeatherSuccess) {
+                      return ImageSlider(
+                        weathers: state.weathers,
+                      );
                     }
                     return const Placeholder();
                   },

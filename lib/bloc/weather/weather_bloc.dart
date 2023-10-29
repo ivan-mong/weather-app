@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:http/http.dart';
 import 'package:weather_app/core/model/weather.dart';
 import 'package:weather_app/core/service.dart';
 
