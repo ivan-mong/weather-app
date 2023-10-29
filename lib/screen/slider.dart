@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 class ImageSlider extends StatelessWidget {
   final List<DailyWeather> weathers;
-  AdditionalInfoBloc additionalInfoBloc;
+  final AdditionalInfoBloc additionalInfoBloc;
   ImageSlider({required this.weathers, super.key})
       : additionalInfoBloc = AdditionalInfoBloc()
           ..add(
@@ -22,32 +22,32 @@ class ImageSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> imageSliders = weathers
         .map((item) => Container(
-          margin: const EdgeInsets.all(5.0),
-          child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-              child: Stack(
-                children: <Widget>[
-                  Image.network(matchedWeatherImg(item.mainWeather),
-                      fit: BoxFit.cover, width: 1000.0),
-                  Positioned(
-                    bottom: 0.0,
-                    left: 0.0,
-                    right: 0.0,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromARGB(200, 0, 0, 0),
-                            Color.fromARGB(0, 0, 0, 0)
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      child: Text(
-                        "${DateFormat('EEEE').format(
+              margin: const EdgeInsets.all(5.0),
+              child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                  child: Stack(
+                    children: <Widget>[
+                      Image.network(matchedWeatherImg(item.mainWeather),
+                          fit: BoxFit.cover, width: 1000.0),
+                      Positioned(
+                        bottom: 0.0,
+                        left: 0.0,
+                        right: 0.0,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromARGB(200, 0, 0, 0),
+                                Color.fromARGB(0, 0, 0, 0)
+                              ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 20.0),
+                          child: Text(
+                            "${DateFormat('EEEE').format(
                               Jiffy.now()
                                   .add(days: weathers.indexOf(item))
                                   .dateTime,
@@ -56,17 +56,17 @@ class ImageSlider extends StatelessWidget {
                                   .add(days: weathers.indexOf(item))
                                   .dateTime,
                             )}",
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                ],
-              )),
-        ))
+                    ],
+                  )),
+            ))
         .toList();
     return Column(
       children: [
